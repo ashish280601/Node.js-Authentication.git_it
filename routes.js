@@ -5,13 +5,15 @@ import authRouter from "./src/features/authSocial/auth.router.js";
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    return res.status(200).json({
-        message: "Node.js Authentication",
+    return res.status(200).json({   
+        message: "Welcome to the Home Page!",
         status: true
     })
 })
 
 router.use('/api/user', userRouter);
+
+// google router
 router.use('/api/auth', authRouter)
 
 
@@ -22,5 +24,13 @@ router.use((req, res) => {
         status: false
     })
 })
+
+// Example of a protected route
+router.get('/profile', (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
+    res.json({ message: `Hello, ${req.user.name}` });
+  });
 
 export default router;

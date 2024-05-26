@@ -26,8 +26,8 @@ async function emailServiceSignUp(userEmail, userName) {
     await transport.sendMail({
       from: process.env.EMAIL_USER,
       to: userEmail,
-      subject: `Happiest Birthday ${userName}`,
-      text: `Wish you a very happy birthday ${userName}. May god bless you`,
+      subject: `Welcome to  Node Authentication ${userName}`,
+      text: `You have a great choice ${userName} that you had selected our node authenticatio platform.`,
     });
     console.log("Email send successfully " + `to user ${userName}`);
   } catch (error) {

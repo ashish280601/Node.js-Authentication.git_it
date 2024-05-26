@@ -6,11 +6,15 @@ import recaptcha from "../../services/recaptcha.js";
 const userRouter = express.Router();
 const userController = new UserController();
 
-userRouter.post("/signup", recaptcha.middleware.verify, (req, res) => {
+// userRouter.post("/signup", recaptcha.middleware.verify, (req, res) => {
+//   userController.signUp(req, res);
+// });
+
+userRouter.post("/signup", (req, res) => {
   userController.signUp(req, res);
 });
 
-userRouter.post("/login", recaptcha.middleware.verify, (req, res) => {
+userRouter.post("/login", (req, res) => {
   userController.signIn(req, res);
 });
 

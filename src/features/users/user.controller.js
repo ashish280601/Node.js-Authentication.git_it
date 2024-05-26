@@ -18,12 +18,12 @@ export default class UserController {
       console.log(req.body);
       const { name, email, password } = req.body;
 
-      if (req.recaptcha.error) {
-        return res.status(400).json({
-          message: "reCAPTCHA verification failed. Please try again.",
-          status: false,
-        });
-      }
+      // if (req.recaptcha.error) {
+      //   return res.status(400).json({
+      //     message: "reCAPTCHA verification failed. Please try again.",
+      //     status: false,
+      //   });
+      // }
 
       const saltRound = 10;
       const hashedPassword = await bcrypt.hash(password, saltRound);
@@ -55,12 +55,12 @@ export default class UserController {
     try {
       const { email, password } = req.body;
 
-      if (req.recaptcha.error) {
-        return res.status(400).json({
-          message: "reCAPTCHA verification failed. Please try again.",
-          status: false,
-        });
-      }
+      // if (req.recaptcha.error) {
+      //   return res.status(400).json({
+      //     message: "reCAPTCHA verification failed. Please try again.",
+      //     status: false,
+      //   });
+      // }
 
       // finding the email user is present or not
       const user = await this.userRepository.findByEmail(email);
@@ -118,7 +118,6 @@ export default class UserController {
       console.log("resetPasswordRequest", resetPasswordRequest);
       await OPTVerifyEmail(resetPasswordRequest.email, otp.toString());
       return res.status(200).json({
-        otp,
         message: "OTP send successfully",
         status: true,
       });
@@ -136,7 +135,7 @@ export default class UserController {
       const { otp } = req.body;
       const userID = req.userID;
 
-      const isValid = await this.userRepository.verfityOTP(userID);
+      const isValid = await this.userRepository.verifyOTP(userID);
       if (otp !== isValid.otp) {
         return res.status(400).json({
           message: "OTP is not valid",

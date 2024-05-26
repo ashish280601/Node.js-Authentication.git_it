@@ -17,7 +17,6 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: true,
   },
   otp: {
     type: String,
@@ -27,4 +26,7 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-export default userSchema;
+const UserModel = mongoose.model("Users", userSchema)
+
+export default UserModel;
+

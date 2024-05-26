@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
-import userSchema from "./user.schema.js";
+import UserModel from "./user.schema.js"
+// import "../authSocial/auth.google.js";
 
-export const UserModel = mongoose.model("Users", userSchema);
+// export const UserModel = mongoose.model("Users", userSchema);
 
 export default class UserRepository {
   async signUp(userData) {
@@ -60,7 +61,7 @@ export default class UserRepository {
     }
   }
 
-  async verfityOTP(userID) {
+  async verifyOTP(userID) {
     try {
       const otpVerify = await UserModel.findById(userID);
       return otpVerify;
