@@ -1,0 +1,222 @@
+body {
+  background-color: #f5f5f5;
+}
+.login_sec {
+  background-color: #f5f5f5;
+  // height: 100vh;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  .left_box {
+    padding-right: 0px;
+    .cardbox {
+      background: #fff;
+      padding: 3rem !important;
+      height: 100%;
+      box-shadow: rgb(100 100 111 / 10%) 0px 7px 29px 0px;
+      @media (max-width: 768px) {
+        padding: 1rem !important;
+      }
+      .password_box {
+        display: flex;
+        align-items: center;
+        background: whitesmoke;
+        padding-right: 10px;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+      }
+      .bg-light {
+        background-color: #f5f5f5 !important;
+      }
+      .signin-other-title {
+        position: relative;
+        font-size: 16px;
+        font-family: "DM Sans", sans-serif;
+        h5 {
+          font-size: 16px;
+        }
+      }
+
+      .signin-other-title:after {
+        border-top: 1px dashed #bdc5c9;
+        content: "";
+        height: 1px;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 10px;
+        width: 100%;
+      }
+
+      .list-inline {
+        li {
+          a {
+            border: 2px solid #adb5bd;
+            border-radius: 50%;
+            color: #adb5bd;
+            display: block;
+            height: 2rem;
+            line-height: calc(2rem - 4px);
+            text-align: center;
+            transition: all 0.4s;
+            width: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+      }
+      .over {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: "DM Sans", sans-serif;
+      }
+      .btn-primary {
+        color: #fff;
+        background-color: #438a7a;
+        border-color: #438a7a;
+        font-weight: 600;
+        font-family: "DM Sans", sans-serif;
+      }
+      .text-center {
+        h5 {
+          color: #495057;
+          font-family: "DM Sans", sans-serif;
+          font-weight: 600;
+        }
+        p {
+          font-family: "DM Sans", sans-serif;
+        }
+      }
+      label {
+        font-family: "DM Sans", sans-serif;
+        font-weight: 500;
+        font-size: 15px;
+      }
+      input {
+        box-shadow: none;
+        outline: none;
+      }
+    }
+  }
+  .right_box {
+    padding-left: 0px;
+    @media (max-width: 768px) {
+      display: none;
+    }
+    .img_box {
+      height: 100%;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
+
+.otpverify_sec {
+  .ReSend_btn {
+    text-align: end;
+  }
+  .title {
+    max-width: 400px;
+    margin: auto;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    h3 {
+      font-weight: bold;
+    }
+    p {
+      font-size: 12px;
+      color: #118a44;
+      &.msg {
+        color: initial;
+        text-align: initial;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .otp-input-fields {
+    margin: auto;
+    background-color: white;
+    box-shadow: 0px 0px 8px 0px #02025044;
+    max-width: 400px;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 40px;
+
+    input {
+      height: 40px;
+      width: 40px;
+      background-color: transparent;
+      border-radius: 4px;
+      border: 1px solid #2f8f1f;
+      text-align: center;
+      outline: none;
+      font-size: 16px;
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      /* Firefox */
+      &[type="number"] {
+        -moz-appearance: textfield;
+      }
+      &:focus {
+        border-width: 2px;
+        border-color: darken(#2f8f1f, 5%);
+        font-size: 20px;
+      }
+    }
+  }
+
+  .result {
+    max-width: 400px;
+    margin: auto;
+    padding: 10px 10px;
+    text-align: center;
+    p {
+      font-size: 24px;
+      font-family: "Antonio", sans-serif;
+      opacity: 1;
+      transition: color 0.5s ease;
+      &._ok {
+        color: green;
+      }
+      &._notok {
+        color: red;
+        border-radius: 3px;
+      }
+    }
+  }
+}
+.ForgetPassword_sec {
+  .panel-default {
+    width: 40%;
+    margin: 0px auto;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 20px;
+    .input-group {
+      display: flex;
+      align-items: baseline;
+      background: #fff;
+      border: 1px solid #cfd4da;
+      border-radius: 5px;
+      padding-right: 10px;
+      input {
+        border: none;
+        outline: none;
+        box-shadow: none;
+        background-color: rgba(255, 0, 0, 0);
+      }
+    }
+    @media (max-width: 768px) {
+      width: 90%;
+    }
+  }
+}
