@@ -3,16 +3,19 @@ import express from "express";
 import session from "express-session";
 import passport from "passport";
 import bodyParser from "body-parser";
+import cors from "cors"
 
 import "./env.js";
 import mongooseConnectToDB from "./src/config/mongooseConfig.js";
 import router from "./routes.js";
 
 const server = express();
+server.use(cors())
 
 const port = process.env.PORT;
 const hostname = process.env.HOST_NAME;
 
+server.use(express.json());
 server.use(bodyParser.json());
 server.use(express.urlencoded({ extended: true }));
 
@@ -22,6 +25,7 @@ server.use(
     secret: process.env.SECRET_KEY,
     resave: false,
     saveUninitialized: false,
+    cookie: { secure: false } 
   })
 );
 server.use(passport.initialize());
