@@ -1,1 +1,1 @@
-export const hostUrl = "http://localhost:7000"
+export const hostUrl = "https://node-js-authentication-apis-git-it.onrender.com"
