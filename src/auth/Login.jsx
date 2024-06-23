@@ -61,7 +61,7 @@ const Login = () => {
         variant: "success",
         autoHideDuration: 5000,
       });
-      navigate("/");
+      navigate("/dashboard");
     } catch (error) {
       console.error("Error while login", error);
       enqueueSnackbar("Unauthorized User", {
