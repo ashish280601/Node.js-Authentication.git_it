@@ -1,4 +1,4 @@
-import "./App.css";
+--import "./App.css";
 import "../src/assets/css/style.scss";
 import Dashboard from "./dashboard/dashboard";
 import OTPVerify from "./auth/OTPVerify";
@@ -22,7 +22,7 @@ function App() {
       <Route path="/signup" element={<SignUp />} />
       <Route path="/login" element={<Login />} />
       <Route
-        path="/dashboard"
+        path="/"
         element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />}
       />
       <Route
