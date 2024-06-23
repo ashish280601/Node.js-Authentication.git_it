@@ -1,4 +1,4 @@
---import "./App.css";
+import "./App.css";
 import "../src/assets/css/style.scss";
 import Dashboard from "./dashboard/dashboard";
 import OTPVerify from "./auth/OTPVerify";
