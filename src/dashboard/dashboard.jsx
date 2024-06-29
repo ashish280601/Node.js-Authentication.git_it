@@ -47,7 +47,9 @@ const Dashboard = () => {
       }
     } catch (error) {
       console.error("Logout failed", error);
-      enqueueSnackbar("Failed to logout", { variant: "error" });
+      // enqueueSnackbar("Failed to logout", { variant: "error" });
+      enqueueSnackbar("Logout Successful", { variant: "success" });
+        navigate("/");
     }
   };
   return (
