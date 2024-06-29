@@ -5,7 +5,7 @@ import { useSnackbar } from "notistack";
 import { hostUrl } from "../../configUrl";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useSelector, useDispatch } from "react-redux";
-import { loginUser, togglePasswordVisibility } from "../redux/authSlice";
+import { googleAuthSlice, loginUser, togglePasswordVisibility } from "../redux/authSlice";
 
 import loginimg from "../assets/images/loginimg.png";
 
@@ -30,14 +30,14 @@ const Login = () => {
     setRecaptchaToken(token);
   }
 
-  function handleTogglePassword(field){
+  function handleTogglePassword(field) {
     dispatch(togglePasswordVisibility(field))
   }
 
   const handleLoginUser = async (e) => {
     e.preventDefault();
-    if(auth.name == "" || auth.email == "" || auth.password == ""){
-      enqueueSnackbar("Please enter all the credential details",{
+    if (auth.name == "" || auth.email == "" || auth.password == "") {
+      enqueueSnackbar("Please enter all the credential details", {
         variant: "warning"
       })
       return
@@ -63,19 +63,36 @@ const Login = () => {
       });
       navigate("/");
     } catch (error) {
-      console.error("Error while login", error);
-      enqueueSnackbar("Unauthorized User", {
-        variant: "warning",
-        autoHideDuration: 5000,
-      });
+      console.error("Error while login", error); -
+        enqueueSnackbar("Unauthorized User", {
+          variant: "warning",
+          autoHideDuration: 5000,
+        });
     }
   };
 
-  const handleGoogleAuth = () => {
-    console.log("button click");
-    // onToggleAuth();
-    window.location.href = `${hostUrl}/api/auth/google`;
+  const handleGoogleCallback = () => {
+    window.location.href = 'http://localhost:7000/api/user/auth/google';
   };
+
+
+  // const query = new URLSearchParams(window.location.search);
+  // const token = query.get('token');
+  // const status = query.get('status');
+
+  // if (token && status) {
+  //   // Store token in localStorage
+  //   const data = sessionStorage.setItem('token', token);
+  //   console.log("seesaion data", data);
+  //   sessionStorage.setItem('status', status);
+  //   // Optionally remove the token from the URL
+  //   // history.replace('/dashboard');
+  // } else {
+  //   // Handle the case where there's no token (optional)
+  //   navigate('/login');
+  // }
+
+
 
   return (
     <section className="login_sec">
@@ -189,18 +206,18 @@ const Login = () => {
                   />
                   <div className="mt-2">
                     <button type="submit" className="btn btn-primary w-100">
-                    {isLoading ? (
-                          <>
-                            Sign In{"      "}
-                            <img
-                              alt="loading-gif"
-                              src="https://media.tenor.com/wpSo-8CrXqUAAAAi/loading-loading-forever.gif"
-                              width="20"
-                            />
-                          </>
-                        ) : (
-                          "Sign In"
-                        )}
+                      {isLoading ? (
+                        <>
+                          Sign In{"      "}
+                          <img
+                            alt="loading-gif"
+                            src="https://media.tenor.com/wpSo-8CrXqUAAAAi/loading-loading-forever.gif"
+                            width="20"
+                          />
+                        </>
+                      ) : (
+                        "Sign In"
+                      )}
                     </button>
                   </div>
                 </form>
@@ -210,12 +227,11 @@ const Login = () => {
                   </div>
                   <ul className="list-inline">
                     <li className="list-inline-item">
-                        <Link
-                          className="social-list-item text-white"
-                          href="#"
-                          style={{color:"white"}}
-                          onClick={handleGoogleAuth}
-                        >
+                      <Link
+                        className="social-list-item text-white"
+                        style={{ color: "white" }}
+                        onClick={handleGoogleCallback}
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           x="0px"

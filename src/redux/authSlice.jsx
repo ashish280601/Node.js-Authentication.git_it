@@ -88,6 +88,20 @@ export const resetPassword = createAsyncThunk(
   }
 );
 
+export const googleAuthSlice = createAsyncThunk(
+  'google/auth',
+  async (_, { rejectWithValue }) => {
+    try {
+      const res = await axios.get(`${hostUrl}/api/user/auth/google`);
+      console.log('google signIN res', res);
+      return res.data;
+    } catch (error) {
+      console.error('Error while google signup', error);
+      return rejectWithValue(error.response.data);
+    }
+  }
+);  
+
 const authSlice = createSlice({
   name: "auth",
   initialState: {
@@ -175,6 +189,22 @@ const authSlice = createSlice({
         state.resetPassword = action.payload;
       })
       .addCase(resetPassword.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(googleAuthSlice.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(googleAuthSlice.fulfilled, (state, action) => {
+        console.log("Action google payload fulfilled", action.payload);
+        state.isLoading = false;
+        state.isSession = action.payload.data;
+        sessionStorage.setItem("googleAuth", JSON.stringify(state.isSession));
+        console.log("session data", state.isSession);
+      })
+      .addCase(googleAuthSlice.rejected, (state, action) => {
+        console.log("action payload rejected", action.payload);
         state.isLoading = false;
         state.error = action.payload;
       });

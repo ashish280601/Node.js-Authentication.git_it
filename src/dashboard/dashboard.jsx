@@ -7,7 +7,7 @@ import { useState } from "react";
 import OTPVerify from "../auth/OTPVerify";
 import { OTPRequests } from "../redux/authSlice";
 
-const Dashboard = ({ toggleAuth, onLogout }) => {
+const Dashboard = () => {
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
@@ -36,14 +36,13 @@ const Dashboard = ({ toggleAuth, onLogout }) => {
 
   const handleSignOut = async () => {
     try {
-      if (isSession.status === true) {  
+      if (isSession?.status === true) {  
         sessionStorage.clear();
         navigate("/login");
       } else {
-        const res = await axios.get(`${hostUrl}/api/auth/logout`);
+        const res = await axios.get(`${hostUrl}/api/user/auth/google/logout`);
         console.log("Logout successful", res);
         enqueueSnackbar("Logout Successful", { variant: "success" });
-        onLogout();
         navigate("/login");
       }
     } catch (error) {

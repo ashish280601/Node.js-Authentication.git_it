@@ -23,7 +23,8 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route
         path="/"
-        element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />}
+        element={<Dashboard />}
+        // element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />}
       />
       <Route
         path="/otp/verify"
