@@ -76,7 +76,7 @@ const Login = ({onToggleAuth}) => {
   const handleGoogleCallback = async () => {
     try {
       // Initiate the Google login process and get the response
-      window.location.href = 'http://localhost:7000/api/user/auth/google';
+      window.location.href = `${hostUrl}/api/user/auth/google`;
     } catch (error) {
       console.error("Error during Google login:", error);
       setError("An error occurred during login. Please try again.");
