@@ -69,6 +69,7 @@ const Login = ({onToggleAuth}) => {
           variant: "warning",
           autoHideDuration: 5000,
         });
+        window.location.reload();
     }
   };
 

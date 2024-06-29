@@ -48,9 +48,11 @@ const ForgetPassword = ({ onLogout }) => {
       enqueueSnackbar("Password Changed Successfully", {
         variant: "success",
       });
+      // Force a page reload
       // Clear the session
       sessionStorage.removeItem("userData");
       navigate("/");
+      window.location.reload();
     } catch (error) {
       console.error("Error while changing password", error);
       enqueueSnackbar("Error While Changing Password", {
