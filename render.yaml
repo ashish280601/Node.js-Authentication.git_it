@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: node-js-authentication
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+    rewrite:
+      - source: /.*
+        destination: /index.html
+
