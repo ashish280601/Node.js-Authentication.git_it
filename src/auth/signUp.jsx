@@ -61,7 +61,7 @@ const SignUp = () => {
       enqueueSnackbar("Account Created Successfully", {
         variant: "success",
       });
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       console.error(error);
       enqueueSnackbar("Unable to create user account", {
@@ -247,7 +247,7 @@ const SignUp = () => {
                       Don't have an account?{" "}
                       <Link
                         className="fw-medium text-primary text-decoration-underline"
-                        to="/login"
+                        to="/"
                       >
                         SignIn
                       </Link>

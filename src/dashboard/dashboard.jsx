@@ -38,12 +38,12 @@ const Dashboard = () => {
     try {
       if (isSession?.status === true) {  
         sessionStorage.clear();
-        navigate("/login");
+        navigate("/");
       } else {
         const res = await axios.get(`${hostUrl}/api/user/auth/google/logout`);
         console.log("Logout successful", res);
         enqueueSnackbar("Logout Successful", { variant: "success" });
-        navigate("/login");
+        navigate("/");
       }
     } catch (error) {
       console.error("Logout failed", error);

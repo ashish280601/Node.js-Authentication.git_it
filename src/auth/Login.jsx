@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useSnackbar } from "notistack";
 import { hostUrl } from "../../configUrl";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -9,11 +9,12 @@ import { googleAuthSlice, loginUser, togglePasswordVisibility } from "../redux/a
 
 import loginimg from "../assets/images/loginimg.png";
 
-const Login = () => {
+const Login = ({onToggleAuth}) => {
   const [auth, setAuth] = useState({});
   const [recaptchaToken, setRecaptchaToken] = useState(null);
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
   const { togglePassword, isLoading } = useSelector((state) => state.auth)
 
@@ -61,7 +62,7 @@ const Login = () => {
         variant: "success",
         autoHideDuration: 5000,
       });
-      navigate("/");
+      navigate("/dashboard");
     } catch (error) {
       console.error("Error while login", error); -
         enqueueSnackbar("Unauthorized User", {
@@ -71,28 +72,36 @@ const Login = () => {
     }
   };
 
-  const handleGoogleCallback = () => {
-    window.location.href = 'http://localhost:7000/api/user/auth/google';
+  const handleGoogleCallback = async () => {
+    try {
+      // Initiate the Google login process and get the response
+      window.location.href = 'http://localhost:7000/api/user/auth/google';
+    } catch (error) {
+      console.error("Error during Google login:", error);
+      setError("An error occurred during login. Please try again.");
+    }
   };
 
-
-  // const query = new URLSearchParams(window.location.search);
-  // const token = query.get('token');
-  // const status = query.get('status');
-
-  // if (token && status) {
-  //   // Store token in localStorage
-  //   const data = sessionStorage.setItem('token', token);
-  //   console.log("seesaion data", data);
-  //   sessionStorage.setItem('status', status);
-  //   // Optionally remove the token from the URL
-  //   // history.replace('/dashboard');
-  // } else {
-  //   // Handle the case where there's no token (optional)
-  //   navigate('/login');
-  // }
-
-
+  useEffect(() => {
+    // Extract query parameters from the URL
+    console.log("call me....................................");
+    const params = new URLSearchParams(window.location.search);
+    console.log("call me1111111111111111");
+    const status = params.get('status');
+    console.log("call me2222")
+    onToggleAuth(true);
+    console.log("status", status);
+    if (status !== null) {
+      console.log("call me33333333333")
+      const isAuthenticated = status === 'true';
+      console.log("call me44444444444444444");
+      if (isAuthenticated) {
+        navigate('/dashboard'); // Redirect to dashboard or desired page
+      } else {
+        setError('Login failed. Please try again.');
+      }
+    }
+  }, [location.search, onToggleAuth, navigate]);
 
   return (
     <section className="login_sec">

@@ -11,20 +11,19 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 
 function App() {
-  const [toggleAuth, setToggleAuth] = useState(false);
+  const [toggleAuth, setToggleAuth] = useState(true);
   const { isSession } = useSelector((state) => state.auth);
-  const isAuthenticated = isSession?.status || "";
+  const isAuthenticated = isSession?.status || toggleAuth;
 
   console.log("isAuthenticated", isAuthenticated);
 
   return (
     <Routes>
       <Route path="/signup" element={<SignUp />} />
-      <Route path="/login" element={<Login />} />
+      <Route path="/" element={<Login onToggleAuth={setToggleAuth}/>} />
       <Route
-        path="/"
-        element={<Dashboard />}
-        // element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />}
+        path="/dashboard"
+        element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />}
       />
       <Route
         path="/otp/verify"
@@ -36,6 +35,7 @@ function App() {
           isAuthenticated ? <ForgetPassword /> : <Navigate to="/login" />
         }
       />
+      {/* <Route path="/" element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />} /> */}
     </Routes>
   );
 }

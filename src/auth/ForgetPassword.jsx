@@ -50,7 +50,7 @@ const ForgetPassword = ({ onLogout }) => {
       });
       // Clear the session
       sessionStorage.removeItem("userData");
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       console.error("Error while changing password", error);
       enqueueSnackbar("Error While Changing Password", {
